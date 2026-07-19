@@ -1,0 +1,20 @@
+[
+  {
+    "id": "user_1784382679016",
+    "name": "Google User",
+    "email": "google-1784382679015@novacart.dev",
+    "role": "customer",
+    "provider": "google",
+    "createdAt": "2026-07-18T13:51:19.016Z",
+    "passwordHash": "1d252fe9b57ac35f241f8f401e044a80578c9ec089eae89778a517d1b4d6cce1"
+  },
+  {
+    "id": "user_1784382696420",
+    "name": "Google User",
+    "email": "google-1784382696418@novacart.dev",
+    "role": "customer",
+    "provider": "google",
+    "createdAt": "2026-07-18T13:51:36.420Z",
+    "passwordHash": "1d252fe9b57ac35f241f8f401e044a80578c9ec089eae89778a517d1b4d6cce1"
+  }
+]

@@ -23,7 +23,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
           <p className="text-lg font-semibold text-white">${product.price}</p>
           {product.originalPrice ? <p className="text-sm text-zinc-500 line-through">${product.originalPrice}</p> : null}
         </div>
-        <Link href="/products" className="inline-flex items-center gap-2 text-sm font-medium text-brand-300 transition hover:text-white">
+        <Link href={`/products/${product.id}`} className="inline-flex items-center gap-2 text-sm font-medium text-brand-300 transition hover:text-white">
           View <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
