@@ -11,36 +11,66 @@ interface ProductDetailCardProps {
   className?: string;
 }
 
-export function ProductDetailCard({ product, className }: ProductDetailCardProps) {
+export function ProductDetailCard({
+  product,
+  className,
+}: ProductDetailCardProps) {
   const { addToCart, toggleWishlist, isInWishlist } = useCartStore();
-  const liked = isInWishlist(product.id);
+
+  const productId = product._id ?? '';
+
+  const liked = productId ? isInWishlist(productId) : false;
 
   return (
-    <article className={cn('rounded-[2rem] border border-white/10 bg-zinc-900/70 p-6 shadow-soft', className)}>
+    <article
+      className={cn(
+        'rounded-[2rem] border border-white/10 bg-zinc-900/70 p-6 shadow-soft',
+        className
+      )}
+    >
       <div className="mb-6 h-48 rounded-[1.5rem] bg-gradient-to-br from-brand-500/30 via-zinc-800 to-zinc-700" />
+
       <div className="mb-3 flex items-center justify-between text-sm text-brand-300">
         <span>{product.badge}</span>
         <span>{product.category}</span>
       </div>
-      <h3 className="text-2xl font-semibold text-white">{product.name}</h3>
-      <p className="mt-3 text-sm leading-7 text-zinc-400">{product.description}</p>
+
+      <h3 className="text-2xl font-semibold text-white">
+        {product.name}
+      </h3>
+
+      <p className="mt-3 text-sm leading-7 text-zinc-400">
+        {product.description}
+      </p>
+
       <div className="mt-6 flex items-center justify-between">
         <div>
-          <p className="text-2xl font-semibold text-white">${product.price}</p>
-          {product.originalPrice ? <p className="text-sm text-zinc-500 line-through">${product.originalPrice}</p> : null}
+          <p className="text-2xl font-semibold text-white">
+            ${product.price}
+          </p>
+
+          {product.originalPrice && (
+            <p className="text-sm text-zinc-500 line-through">
+              ${product.originalPrice}
+            </p>
+          )}
         </div>
+
         <div className="flex items-center gap-3">
           <button
             type="button"
-            onClick={() => toggleWishlist(product.id)}
+            onClick={() => productId && toggleWishlist(productId)}
             className={cn(
               'rounded-full border border-white/10 p-2.5 transition',
-              liked ? 'bg-red-500/20 text-red-300' : 'text-zinc-300 hover:bg-white/10 hover:text-white',
+              liked
+                ? 'bg-red-500/20 text-red-300'
+                : 'text-zinc-300 hover:bg-white/10 hover:text-white'
             )}
             aria-label="Toggle wishlist"
           >
             <Heart className={cn('h-4 w-4', liked && 'fill-current')} />
           </button>
+
           <button
             type="button"
             onClick={() => addToCart(product)}
@@ -51,8 +81,13 @@ export function ProductDetailCard({ product, className }: ProductDetailCardProps
           </button>
         </div>
       </div>
-      <Link href="/products" className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-brand-300 transition hover:text-white">
-        Explore more <ArrowRight className="h-4 w-4" />
+
+      <Link
+        href="/products"
+        className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-brand-300 transition hover:text-white"
+      >
+        Explore more
+        <ArrowRight className="h-4 w-4" />
       </Link>
     </article>
   );
