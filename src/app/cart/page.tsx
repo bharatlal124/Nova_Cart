@@ -38,7 +38,7 @@ export default function CartPage() {
             ) : (
               <div className="space-y-4">
                 {items.map((item) => (
-                  <div key={item.product.id} className="flex flex-col gap-4 rounded-[1.5rem] border border-white/10 bg-zinc-900/70 p-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div key={item.product._id} className="flex flex-col gap-4 rounded-[1.5rem] border border-white/10 bg-zinc-900/70 p-4 sm:flex-row sm:items-center sm:justify-between">
                     <div>
                       <p className="text-lg font-semibold text-white">{item.product.name}</p>
                       <p className="mt-1 text-sm text-zinc-400">{item.product.category}</p>
@@ -46,7 +46,10 @@ export default function CartPage() {
                     <div className="flex items-center gap-3">
                       <button
                         type="button"
-                        onClick={() => updateQuantity(item.product.id, Math.max(0, item.quantity - 1))}
+                        onClick={() =>
+  item.product._id &&
+  updateQuantity(item.product._id, Math.max(0, item.quantity - 1))
+}
                         className="rounded-full border border-white/10 p-2 text-zinc-300 transition hover:bg-white/10"
                       >
                         <Minus className="h-4 w-4" />
@@ -54,14 +57,20 @@ export default function CartPage() {
                       <span className="min-w-6 text-center text-sm font-medium text-white">{item.quantity}</span>
                       <button
                         type="button"
-                        onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
+                        onClick={() =>
+  item.product._id &&
+  updateQuantity(item.product._id, item.quantity + 1)
+}
                         className="rounded-full border border-white/10 p-2 text-zinc-300 transition hover:bg-white/10"
                       >
                         <Plus className="h-4 w-4" />
                       </button>
                       <button
                         type="button"
-                        onClick={() => removeFromCart(item.product.id)}
+                       onClick={() =>
+  item.product._id &&
+  removeFromCart(item.product._id)
+}
                         className="ml-2 rounded-full border border-white/10 p-2 text-zinc-300 transition hover:bg-white/10"
                       >
                         <Trash2 className="h-4 w-4" />

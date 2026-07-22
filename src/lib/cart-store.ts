@@ -29,13 +29,13 @@ export const useCartStore = create<CartStore>()(
       wishlist: [],
       addToCart: (product, quantity = 1) =>
         set((state) => {
-          const existing = state.items.find((item) => item.product.id === product.id);
+          const existing = state.items.find((item) => item.product._id === product._id);
 
           if (existing) {
             return {
               ...state,
               items: state.items.map((item) =>
-                item.product.id === product.id ? { ...item, quantity: item.quantity + quantity } : item,
+                item.product._id === product._id ? { ...item, quantity: item.quantity + quantity } : item,
               ),
             };
           }
@@ -48,13 +48,13 @@ export const useCartStore = create<CartStore>()(
       removeFromCart: (id) =>
         set((state) => ({
           ...state,
-          items: state.items.filter((item) => item.product.id !== id),
+          items: state.items.filter((item) => item.product._id !== id),
         })),
       updateQuantity: (id, quantity) =>
         set((state) => ({
           ...state,
           items: state.items
-            .map((item) => (item.product.id === id ? { ...item, quantity } : item))
+            .map((item) => (item.product._id === id ? { ...item, quantity } : item))
             .filter((item) => item.quantity > 0),
         })),
       toggleWishlist: (id) =>
