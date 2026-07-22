@@ -7,12 +7,43 @@ import { ArrowRight } from 'lucide-react';
 import { SiteHeader } from '@/components/layout/site-header';
 import { useCartStore } from '@/lib/cart-store';
 import type { Product } from '@/types/product';
+// import {removeWishlist } from "@/lib/mongo-wishlist";
+
+
 
 export default function WishlistPage() {
   const { wishlist, toggleWishlist } = useCartStore();
+  const [wishlistIds, setWishlistIds] = useState<string[]>([]);
 
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+
+
+  async function handleRemove(productId: string) {
+  try {
+    const res = await fetch("/api/wishlist", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        productId,
+      }),
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to remove wishlist");
+    }
+
+    // Update local state
+    setWishlistIds((prev) =>
+      prev.filter((id) => id !== productId)
+    );
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 
   useEffect(() => {
     async function fetchProducts() {
@@ -35,10 +66,31 @@ export default function WishlistPage() {
     fetchProducts();
   }, []);
 
-  const items = products.filter(
-    (product) =>
-      product._id && wishlist.includes(product._id)
-  );
+  useEffect(() => {
+  async function fetchWishlist() {
+    try {
+      const res = await fetch("/api/wishlist");
+
+      if (!res.ok) return;
+
+      const data = await res.json();
+
+      setWishlistIds(
+        data.map((item: any) => item.productId)
+      );
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  fetchWishlist();
+}, []);
+
+ const items = products.filter(
+  product =>
+    product._id &&
+    wishlistIds.includes(product._id)
+);
 
   return (
     <main className="min-h-screen bg-zinc-950 px-6 py-8 lg:px-8">
@@ -100,10 +152,7 @@ export default function WishlistPage() {
 
                     <button
                       type="button"
-                      onClick={() =>
-                        product._id &&
-                        toggleWishlist(product._id)
-                      }
+                        onClick={() => handleRemove(product._id!)}
                       className="text-sm text-brand-300 transition hover:text-white"
                     >
                       Remove

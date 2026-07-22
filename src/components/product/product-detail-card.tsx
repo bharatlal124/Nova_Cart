@@ -1,7 +1,9 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Heart, ShoppingBag, ArrowRight } from 'lucide-react';
+
 import type { Product } from '@/types/product';
 import { useCartStore } from '@/lib/cart-store';
 import { cn } from '@/lib/utils';
@@ -11,15 +13,78 @@ interface ProductDetailCardProps {
   className?: string;
 }
 
+interface WishlistItem {
+  _id: string;
+  userId: string;
+  productId: string;
+  createdAt: string;
+}
+
 export function ProductDetailCard({
   product,
   className,
 }: ProductDetailCardProps) {
-  const { addToCart, toggleWishlist, isInWishlist } = useCartStore();
+  const { addToCart } = useCartStore();
 
   const productId = product._id ?? '';
 
-  const liked = productId ? isInWishlist(productId) : false;
+  const [liked, setLiked] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  // Load wishlist status
+  useEffect(() => {
+    if (!productId) return;
+
+    async function loadWishlist() {
+      try {
+        const res = await fetch('/api/wishlist');
+
+        if (!res.ok) return;
+
+        const wishlist: WishlistItem[] = await res.json();
+
+        const exists = wishlist.some(
+          (item) => item.productId === productId
+        );
+
+        setLiked(exists);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    loadWishlist();
+  }, [productId]);
+
+ async function handleWishlist() {
+  if (!productId || loading) return;
+
+  setLoading(true);
+
+  try {
+    const method = liked ? "DELETE" : "POST";
+
+    const res = await fetch("/api/wishlist", {
+      method,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        productId,
+      }),
+    });
+
+    if (!res.ok) {
+      throw new Error("Wishlist request failed");
+    }
+
+    setLiked(!liked);
+  } catch (err) {
+    console.error(err);
+  } finally {
+    setLoading(false);
+  }
+}
 
   return (
     <article
@@ -59,16 +124,23 @@ export function ProductDetailCard({
         <div className="flex items-center gap-3">
           <button
             type="button"
-            onClick={() => productId && toggleWishlist(productId)}
+            onClick={handleWishlist}
+            disabled={loading}
             className={cn(
               'rounded-full border border-white/10 p-2.5 transition',
               liked
                 ? 'bg-red-500/20 text-red-300'
-                : 'text-zinc-300 hover:bg-white/10 hover:text-white'
+                : 'text-zinc-300 hover:bg-white/10 hover:text-white',
+              loading && 'cursor-not-allowed opacity-70'
             )}
             aria-label="Toggle wishlist"
           >
-            <Heart className={cn('h-4 w-4', liked && 'fill-current')} />
+            <Heart
+              className={cn(
+                'h-4 w-4',
+                liked && 'fill-current'
+              )}
+            />
           </button>
 
           <button
