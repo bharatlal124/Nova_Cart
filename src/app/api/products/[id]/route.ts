@@ -40,39 +40,39 @@ export async function GET(
 }
 
 // UPDATE Product
-export async function PUT(
-  request: Request,
-  { params }: Params
-) {
-  try {
-    const body = await request.json();
+// export async function PUT(
+//   request: Request,
+//   { params }: Params
+// ) {
+//   try {
+//     const body = await request.json();
 
-    const product = await updateProduct(params.id, body);
+//     const product = await updateProduct(params.id, body);
 
-    return NextResponse.json(product);
-  } catch (error) {
-    return NextResponse.json(
-      { message: "Error updating product" },
-      { status: 500 }
-    );
-  }
-}
+//     return NextResponse.json(product);
+//   } catch (error) {
+//     return NextResponse.json(
+//       { message: "Error updating product" },
+//       { status: 500 }
+//     );
+//   }
+// }
 
 // DELETE Product
-export async function DELETE(
-  request: Request,
-  { params }: Params
-) {
-  try {
-    await deleteProduct(params.id);
+// export async function DELETE(
+//   request: Request,
+//   { params }: Params
+// ) {
+//   try {
+//     await deleteProduct(params.id);
 
-    return NextResponse.json({
-      message: "Product deleted successfully",
-    });
-  } catch (error) {
-    return NextResponse.json(
-      { message: "Error deleting product" },
-      { status: 500 }
-    );
-  }
-}
+//     return NextResponse.json({
+//       message: "Product deleted successfully",
+//     });
+//   } catch (error) {
+//     return NextResponse.json(
+//       { message: "Error deleting product" },
+//       { status: 500 }
+//     );
+//   }
+// }
