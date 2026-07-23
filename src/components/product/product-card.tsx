@@ -127,37 +127,36 @@ export function ProductCard({
       </p>
 
       {/* Price */}
-      <div className="mt-6">
-        <p className="text-2xl font-semibold text-white">
-          ₹{product.price}
-        </p>
-
-        {product.originalPrice && (
-          <p className="text-sm text-zinc-500 line-through">
-            ₹{product.originalPrice}
+      <div className="mt-6 flex items-center justify-between">
+        <div>
+          <p className="text-2xl font-semibold text-white">
+            ₹{product.price}
           </p>
-        )}
-      </div>
 
-      <div className="mt-auto pt-6">
-        {/* Wishlist + Cart */}
+          {product.originalPrice && (
+            <p className="text-sm text-zinc-500 line-through">
+              ₹{product.originalPrice}
+            </p>
+          )}
+        </div>
+
         <div className="flex items-center gap-3">
           <button
             type="button"
             onClick={handleWishlist}
             disabled={loading}
             className={cn(
-              'rounded-full border border-white/10 p-3 transition',
+              'rounded-full border border-white/10 p-2.5 transition',
               liked
                 ? 'bg-red-500/20 text-red-300'
                 : 'text-zinc-300 hover:bg-white/10 hover:text-white',
-              loading &&
-                'cursor-not-allowed opacity-70'
+              loading && 'cursor-not-allowed opacity-70'
             )}
+            aria-label="Toggle wishlist"
           >
             <Heart
               className={cn(
-                'h-5 w-5',
+                'h-4 w-4',
                 liked && 'fill-current'
               )}
             />
@@ -166,12 +165,16 @@ export function ProductCard({
           <button
             type="button"
             onClick={() => addToCart(product)}
-            className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-brand-500 px-5 py-3 text-sm font-medium text-white transition hover:bg-brand-600"
+            className="inline-flex items-center gap-2 rounded-full bg-brand-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-brand-600"
           >
             <ShoppingBag className="h-4 w-4" />
             Add to cart
           </button>
         </div>
+
+      </div>
+
+      <div className="mt-auto pt-6 flex justify-end">
 
         {/* View */}
         <Link
