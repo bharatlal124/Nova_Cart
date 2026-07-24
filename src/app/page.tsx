@@ -74,25 +74,23 @@
 
 
 
-
-import Link from "next/link";
+import Link from 'next/link';
 import {
   ArrowRight,
   Sparkles,
   ShieldCheck,
   Truck,
   RefreshCcw,
-} from "lucide-react";
+} from 'lucide-react';
 
-import { ProductCard } from "@/components/product/product-card";
-import { getProducts } from "@/lib/mongo-products";
+import { ProductCard } from '@/components/product/product-card';
+import { getProducts } from '@/lib/mongo-products';
 
 async function getFeaturedProducts() {
-    try {
-    const featuredProducts = await getProducts();
-    return featuredProducts;
+  try {
+    return await getProducts();
   } catch (error) {
-    console.error("Failed to fetch products:", error);
+    console.error('Failed to fetch products:', error);
     return [];
   }
 }
@@ -102,88 +100,113 @@ export default async function HomePage() {
 
   return (
     <main className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(53,99,233,0.18),_transparent_40%)]">
-      <section className="mx-auto flex max-w-7xl flex-col gap-10 px-6 py-20 lg:px-8">
-
+      <section className="mx-auto flex max-w-7xl flex-col gap-20 px-6 py-20 lg:px-8">
+        {/* Header */}
         <header className="flex items-center justify-between rounded-full border border-white/10 bg-white/5 px-4 py-3 backdrop-blur">
-          <div className="text-lg font-semibold tracking-wide">
+          <div className="text-lg font-semibold tracking-wide text-white">
             NovaCart
           </div>
 
-          <nav className="hidden gap-6 text-sm text-zinc-300 md:flex">
-            <Link href="/products">Products</Link>
-            <Link href="/about">About</Link>
-            <Link href="/contact">Contact</Link>
+          <nav className="hidden gap-8 text-sm text-zinc-300 md:flex">
+            <Link
+              href="/products"
+              className="transition hover:text-white"
+            >
+              Products
+            </Link>
+
+            <Link
+              href="/about"
+              className="transition hover:text-white"
+            >
+              About
+            </Link>
+
+            <Link
+              href="/contact"
+              className="transition hover:text-white"
+            >
+              Contact
+            </Link>
           </nav>
 
           <Link
             href="/products"
-            className="rounded-full bg-brand-500 px-4 py-2 text-sm font-medium text-white"
+            className="rounded-full bg-brand-500 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-brand-600"
           >
             Shop Now
           </Link>
         </header>
 
-        <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-
-          <div className="space-y-8">
-
-            <div className="inline-flex items-center gap-2 rounded-full border border-brand-500/30 bg-brand-500/10 px-3 py-1 text-sm text-brand-100">
-              <Sparkles className="h-4 w-4" />
-              Premium commerce, reimagined
-            </div>
-
-            <div>
-              <h1 className="text-5xl font-semibold text-white">
-                Elevate your shopping experience with NovaCart.
-              </h1>
-
-              <p className="mt-4 max-w-xl text-zinc-300">
-                Discover modern essentials, curated drops, and seamless
-                delivery designed for the next generation of retail.
-              </p>
-            </div>
-
-            <div className="flex gap-4">
-
-              <Link
-                href="/products"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-zinc-900"
-              >
-                Explore Collection
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-
-              <Link
-                href="/about"
-                className="rounded-full border border-white/20 px-5 py-3"
-              >
-                Learn More
-              </Link>
-
-            </div>
-
-            <div className="flex gap-6 text-sm text-zinc-400">
-
-              <div className="flex items-center gap-2">
-                <ShieldCheck size={16} />
-                Secure Checkout
-              </div>
-
-              <div className="flex items-center gap-2">
-                <Truck size={16} />
-                Fast Delivery
-              </div>
-
-              <div className="flex items-center gap-2">
-                <RefreshCcw size={16} />
-                Easy Returns
-              </div>
-
-            </div>
-
+        {/* Hero */}
+        <section className="flex flex-col items-center text-center">
+          <div className="inline-flex items-center gap-2 rounded-full border border-brand-500/30 bg-brand-500/10 px-4 py-2 text-sm text-brand-100">
+            <Sparkles className="h-4 w-4" />
+            Premium commerce, reimagined
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-2">
+          <h1 className="mt-8 max-w-5xl text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-7xl">
+            Elevate your shopping experience with NovaCart.
+          </h1>
+
+          <p className="mt-8 max-w-3xl text-lg leading-8 text-zinc-300">
+            Discover modern essentials, curated drops, and seamless
+            delivery designed for the next generation of retail.
+          </p>
+
+          <div className="mt-10 flex flex-wrap justify-center gap-4">
+            <Link
+              href="/products"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-medium text-zinc-900 transition hover:bg-zinc-200"
+            >
+              Explore Collection
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+
+            <Link
+              href="/about"
+              className="rounded-full border border-white/15 px-6 py-3 font-medium text-white transition hover:bg-white/10"
+            >
+              Learn More
+            </Link>
+          </div>
+
+          <div className="mt-10 flex flex-wrap justify-center gap-8 text-sm text-zinc-400">
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="h-4 w-4 text-brand-400" />
+              Secure Checkout
+            </div>
+
+            <div className="flex items-center gap-2">
+              <Truck className="h-4 w-4 text-brand-400" />
+              Fast Delivery
+            </div>
+
+            <div className="flex items-center gap-2">
+              <RefreshCcw className="h-4 w-4 text-brand-400" />
+              Easy Returns
+            </div>
+          </div>
+        </section>
+
+        {/* Featured Products */}
+        <section className="space-y-10">
+          <div className="text-center">
+            <p className="text-sm uppercase tracking-[0.3em] text-brand-300">
+              Featured Collection
+            </p>
+
+            <h2 className="mt-3 text-3xl font-semibold text-white md:text-4xl">
+              Trending Products
+            </h2>
+
+            <p className="mx-auto mt-4 max-w-2xl text-zinc-400">
+              Explore our latest arrivals and best-selling products
+              curated for modern shoppers.
+            </p>
+          </div>
+
+          <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
             {featuredProducts.slice(0, 4).map((product: any) => (
               <ProductCard
                 key={product._id}
@@ -192,7 +215,16 @@ export default async function HomePage() {
             ))}
           </div>
 
-        </div>
+          <div className="flex justify-center">
+            <Link
+              href="/products"
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 px-6 py-3 font-medium text-white transition hover:bg-white/10"
+            >
+              View All Products
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </section>
       </section>
     </main>
   );
