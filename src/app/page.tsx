@@ -206,8 +206,8 @@ export default async function HomePage() {
             </p>
           </div>
 
-          <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
-            {featuredProducts.slice(0, 4).map((product: any) => (
+          <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
+            {featuredProducts.slice(0, 3).map((product: any) => (
               <ProductCard
                 key={product._id}
                 product={product}

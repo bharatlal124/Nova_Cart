@@ -86,7 +86,7 @@ export default function ProductTable({
               </td>
 
               <td className="px-6 py-5 text-white">
-                ${product.price}
+                 ₹{product.price.toLocaleString("en-IN")}
               </td>
 
               <td className="px-6 py-5">

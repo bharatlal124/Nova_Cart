@@ -11,11 +11,11 @@ export default function CartPage() {
   const subtotal = getCartSubtotal();
 
   return (
-    <main className="min-h-screen bg-zinc-950 px-6 py-8 lg:px-8">
+    <main className="min-h-screen bg-zinc-950 px-4 py-3 lg:px-8">
       <div className="mx-auto flex max-w-7xl flex-col gap-8">
         <SiteHeader />
         <section className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
-          <div className="rounded-[2rem] border border-white/10 bg-white/5 p-6 backdrop-blur">
+          <div className="rounded-[2rem] border border-white/10 bg-white/5 p-4 backdrop-blur sm:p-6 lg:p-8">
             <div className="mb-6 flex items-center justify-between">
               <div>
                 <p className="text-sm uppercase tracking-[0.3em] text-brand-300">Your cart</p>
@@ -76,7 +76,7 @@ export default function CartPage() {
                         <Trash2 className="h-4 w-4" />
                       </button>
                     </div>
-                    <p className="text-sm font-semibold text-white">${item.product.price * item.quantity}</p>
+                    <p className="text-sm font-semibold text-white">₹{(item.product.price * item.quantity).toLocaleString("en-IN")}</p>
                   </div>
                 ))}
               </div>
@@ -88,7 +88,7 @@ export default function CartPage() {
             <div className="mt-5 space-y-3 text-sm text-zinc-400">
               <div className="flex items-center justify-between">
                 <span>Subtotal</span>
-                <span className="text-white">${subtotal}</span>
+                <span className="text-white">₹{subtotal.toLocaleString("en-IN")}</span>
               </div>
               <div className="flex items-center justify-between">
                 <span>Shipping</span>
@@ -98,7 +98,7 @@ export default function CartPage() {
             <div className="mt-6 rounded-[1.5rem] border border-white/10 bg-zinc-900/70 p-4">
               <div className="flex items-center justify-between text-lg font-semibold text-white">
                 <span>Total</span>
-                <span>${subtotal}</span>
+                <span>₹{subtotal.toLocaleString("en-IN")}</span>
               </div>
             </div>
             <button type="button" className="mt-6 w-full rounded-full bg-brand-500 px-4 py-3 text-sm font-medium text-white transition hover:bg-brand-600">

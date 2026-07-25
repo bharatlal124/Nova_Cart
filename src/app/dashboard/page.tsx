@@ -63,12 +63,12 @@ export default function DashboardPage() {
   }
 
   return (
-    <main className="min-h-screen bg-zinc-950 px-6 py-8 lg:px-8">
+    <main className="min-h-screen bg-zinc-950 px-4 py-3 lg:px-8">
       <div className="mx-auto flex max-w-7xl flex-col gap-8">
 
         <SiteHeader />
 
-        <section className="rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur">
+        <section className="rounded-[2rem] border border-white/10 bg-white/5 p-4 backdrop-blur sm:p-6 lg:p-8">
 
           <div className="mb-8 flex items-center justify-between">
 

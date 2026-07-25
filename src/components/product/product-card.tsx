@@ -93,12 +93,12 @@ export function ProductCard({
       )}
     >
       {/* Image */}
-      <div className="mb-5 overflow-hidden rounded-2xl bg-gradient-to-br from-brand-500/20 via-zinc-800 to-zinc-700">
+      <div className="mb-5 bg-white  flex justify-center item-center overflow-hidden rounded-2xl from-brand-500/20 via-zinc-800 to-zinc-700">
         {product.image ? (
           <img
             src={product.image}
             alt={product.name}
-            className="h-52 w-full object-cover transition duration-500 group-hover:scale-105"
+            className="h-52 w-50 bg-white object-cover transition duration-500 group-hover:scale-105"
           />
         ) : (
           <div className="h-52" />
@@ -130,12 +130,12 @@ export function ProductCard({
       <div className="mt-6 flex items-center justify-between">
         <div>
           <p className="text-2xl font-semibold text-white">
-            ₹{product.price}
+             ₹{product.price.toLocaleString("en-IN")}
           </p>
 
           {product.originalPrice && (
             <p className="text-sm text-zinc-500 line-through">
-              ₹{product.originalPrice}
+              ₹{product.originalPrice.toLocaleString("en-IN")}
             </p>
           )}
         </div>
