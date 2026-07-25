@@ -127,7 +127,7 @@ export function ProductDetailCard({
 
           {product.originalPrice && (
             <p className="text-sm text-zinc-500 line-through">
-              ₹{product.price.toLocaleString("en-IN")}
+              ₹{product.originalPrice.toLocaleString("en-IN")}
             </p>
           )}
         </div>
