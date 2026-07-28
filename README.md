@@ -1,7 +1,3 @@
-# Nova_Cart
-NovaCart is a full-stack eCommerce platform built with Next.js, featuring secure authentication, product catalog, shopping cart, wishlist, checkout, payment gateway integration, order management, responsive design, and an admin dashboard for managing products and orders.
-
-
 # 🛒 Nova Cart
 
 Nova Cart is a modern full-stack eCommerce application built with **Next.js 16**, **React 19**, **TypeScript**, **Tailwind CSS**, and **MongoDB**. It is designed with a focus on performance, scalability, and a clean user experience.
@@ -12,7 +8,6 @@ Nova Cart is a modern full-stack eCommerce application built with **Next.js 16**
 
 ## 📸 Preview
 
-> Add screenshots or a GIF of the application here.
 
 | Home Page | Product Details | Shopping Cart |
 |-----------|-----------------|---------------|
@@ -66,10 +61,9 @@ Nova_Cart/
 ├── app/
 ├── components/
 ├── lib/
-├── hooks/
+├── schemas/
 ├── types/
 ├── utils/
-├── public/
 ├── styles/
 ├── package.json
 └── README.md
