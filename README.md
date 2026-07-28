@@ -16,15 +16,7 @@ Nova Cart is a modern full-stack eCommerce application built with **Next.js 16**
 
 | Home Page | Product Details | Shopping Cart |
 |-----------|-----------------|---------------|
-| <img width="1263" height="686" alt="Image" src="https://github.com/user-attachments/assets/d6954ade-8fb2-4686-8dd6-84bbdd2da8d8" /> | <img width="1263" height="686" alt="Image" src="https://github.com/user-attachments/assets/d6954ade-8fb2-4686-8dd6-84bbdd2da8d8" /> | Add Screenshot |
-Home Page : 
-<img width="1263" height="686" alt="Image" src="https://github.com/user-attachments/assets/d6954ade-8fb2-4686-8dd6-84bbdd2da8d8" />
-
-Product Details : 
-<img width="1261" height="684" alt="Image" src="https://github.com/user-attachments/assets/eda0c69b-a0a2-4a75-83e4-967c92da2dbb" />
-
-Shopping Cart : 
-<img width="1280" height="584" alt="Image" src="https://github.com/user-attachments/assets/92f18156-2456-47aa-b2da-81276914eb2c" />
+| <img width="1263" height="686" alt="Image" src="https://github.com/user-attachments/assets/d6954ade-8fb2-4686-8dd6-84bbdd2da8d8" /> | <img width="1261" height="684" alt="Image" src="https://github.com/user-attachments/assets/eda0c69b-a0a2-4a75-83e4-967c92da2dbb" /> | <img width="1280" height="584" alt="Image" src="https://github.com/user-attachments/assets/92f18156-2456-47aa-b2da-81276914eb2c" /> |
 
 
 ---
