@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { AuthProvider } from '@/components/providers/auth-provider';
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: 'NovaCart',
@@ -16,6 +17,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning>
       <body>
         <AuthProvider>{children}</AuthProvider>
+        <Script
+    src="https://checkout.razorpay.com/v1/checkout.js"
+    strategy="lazyOnload"
+/>
       </body>
     </html>
   );
